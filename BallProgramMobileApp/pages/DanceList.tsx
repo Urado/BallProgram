@@ -1,21 +1,30 @@
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, SafeAreaView, View } from 'react-native';
+import { requestGet } from '../services';
 
-enum BallDanceStatus {
-    ongoing,
-    waiting,
-    pass,
+
+interface BallPlaylist {
+    dances: BallDance[],
 }
 
 interface BallDance {
     name: string,
-    status: BallDanceStatus
 }
 
 const DanceList = () => {
-    const danceList: BallDance[] = [
-        { name: "Полька", status: BallDanceStatus.pass },
-        { name: "Вальс", status: BallDanceStatus.ongoing }, 
-        { name: "Шалость пака", status: BallDanceStatus.waiting }];
+    const [ballPlaylist, setBallPlaylist] = useState<BallPlaylist>();
+    useEffect(() => {
+        const id = "81454b3e-c0b5-4d4b-bf0a-cc052e47f9d2";
+        requestGet(`/BallPlaylist/${id}`).then((value) => {
+            console.log(value);
+            setBallPlaylist(value);});
+    }, [])
+
+    const danceList: BallDance[] = ballPlaylist?.dances ?? [
+        { name: "Полька" },
+        { name: "Вальс" }, 
+        { name: "Шалость пака" }];
+
     return <View style={styles.container}>
         <Text>All About</Text>
         {danceList.map((value) =>
