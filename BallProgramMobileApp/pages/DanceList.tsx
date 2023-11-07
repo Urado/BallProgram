@@ -14,10 +14,15 @@ interface BallDance {
 const DanceList = () => {
     const [ballPlaylist, setBallPlaylist] = useState<BallPlaylist>();
     useEffect(() => {
-        const id = "81454b3e-c0b5-4d4b-bf0a-cc052e47f9d2";
-        requestGet(`/BallPlaylist/${id}`).then((value) => {
-            console.log(value);
-            setBallPlaylist(value);});
+        const call = () => {
+            setTimeout(() => {const id = "81454b3e-c0b5-4d4b-bf0a-cc052e47f9d2";
+            requestGet(`/BallPlaylist/${id}`).then((value) => {
+                console.log(value);
+                setBallPlaylist(value);});
+                call();
+            }, 500)
+        };
+        call();
     }, [])
 
     const danceList: BallDance[] = ballPlaylist?.dances ?? [
