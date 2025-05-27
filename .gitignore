@@ -1,0 +1,74 @@
+# Общие системные файлы
+.DS_Store
+.thumbs.db
+*.log
+*.tmp
+*.swp
+*.env
+.env.local
+.idea/
+.vscode/
+*.userprefs
+
+### === Node.js / React / Electron === ###
+node_modules/
+dist/
+build/
+.cache/
+.next/
+out/
+.eslintcache
+*.tsbuildinfo
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Electron-специфичное
+release/
+*.exe
+*.dmg
+*.deb
+*.app
+
+### === .NET / ASP.NET Core === ###
+[Bb]in/
+[Oo]bj/
+[Tt]est[Rr]esults/
+*.user
+*.suo
+*.sln.docstates
+*.nupkg
+*.swp
+*.vs/
+.vs/
+**/launchSettings.json
+**/appsettings.Development.json
+
+# Rider / ReSharper
+_ReSharper*/
+*.sln.iml
+
+# MSBuild
+*.msi
+*.pidb
+
+### === React / Frontend === ###
+.svelte-kit
+.astro/
+.serverless/
+.serverless_nextjs/
+
+# Статика
+/public/static
+/public/assets
+
+### === ОС-специфичное === ###
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS
+._*
+.Spotlight-V100
+.Trashes
