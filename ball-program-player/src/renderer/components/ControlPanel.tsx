@@ -1,39 +1,47 @@
 import React from 'react';
 import styled from 'styled-components';
+import { usePlayerStore } from '../stores/playerStore';
+import { TrackNode } from '../../types/playlist';
+import { useAudioPlayer } from '../hooks/useAudioPlayer';
 
 interface ControlPanelProps {
-  onPlay: () => void;
-  onStop: () => void;
-  onReset: () => void;
-  onNext: () => void;
-  onPrevious: () => void;
   onSettingsClick: () => void;
-  progress: number;
-  duration: number;
-  onSeek: (time: number) => void;
-  onVolumeChange?: (volume: number) => void;
+  playTrack: () => void,
+  pauseTrack: () => void,
+  seekTrack: (v: number) => void,
+  changeVolume: (v: number) => void,
+  resetTrack: () => void,
+  nextTrack: () => void,
+  previousTrack: () => void,
+  getCurrentTrack: () => TrackNode | null,
+  getDuration: () => number,
 }
 
 const ControlPanel: React.FC<ControlPanelProps> = ({
-  onPlay,
-  onStop,
-  onReset,
-  onNext,
-  onPrevious,
   onSettingsClick,
-  progress,
-  duration,
-  onSeek,
-  onVolumeChange,
+  playTrack,
+  pauseTrack,
+  seekTrack,
+  changeVolume,
+  resetTrack,
+  nextTrack,
+  previousTrack,
+  getDuration,
 }) => {
+  const {
+    trackProgress,
+  } = usePlayerStore();
+
+  const { volume } = useAudioPlayer();
+
   const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value);
-    onSeek(value);
+    seekTrack(value);
   };
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value);
-    onVolumeChange?.(value);
+    changeVolume?.(value);
   };
 
   return (
@@ -42,23 +50,23 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         <ProgressInput
           type="range"
           min={0}
-          max={duration || 0}
-          value={progress}
+          max={getDuration()}
+          value={trackProgress}
           onChange={handleProgressChange}
         />
         <TimeDisplay>
-          <span>{formatTime(progress)}</span>
-          <span>{formatTime(duration)}</span>
+          <span>{formatTime(trackProgress)}</span>
+          <span>{formatTime(getDuration())}</span>
         </TimeDisplay>
       </ProgressSection>
 
       <ControlsRow>
         <ButtonsGroup>
-          <PlayButton onClick={onPlay}>▶</PlayButton>
-          <ControlButton onClick={onPrevious}>⏮</ControlButton>
-          <ControlButton onClick={onStop}>⏸</ControlButton>
-          <ControlButton onClick={onReset}>↩</ControlButton>
-          <ControlButton onClick={onNext}>⏭</ControlButton>
+          <PlayButton onClick={playTrack}>▶</PlayButton>
+          <ControlButton onClick={previousTrack}>⏮</ControlButton>
+          <ControlButton onClick={pauseTrack}>⏸</ControlButton>
+          <ControlButton onClick={resetTrack}>↩</ControlButton>
+          <ControlButton onClick={nextTrack}>⏭</ControlButton>
         </ButtonsGroup>
 
         <VolumeSettingsGroup>
@@ -68,6 +76,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             min={0}
             max={1}
             step={0.01}
+            value={volume}
             defaultValue={1}
             onChange={handleVolumeChange}
           />

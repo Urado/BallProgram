@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import TrackItem from '../TrackItem';
-import { Playlist, PlaylistNode } from '../../../types/playlist';
-import { StreamerButton } from '../StreamerButton';
+import { Playlist, PlaylistNode } from '../../../../types/playlist';
+import { StreamerButton } from '../../StreamerButton';
+import TrackItem from '../../TrackItem';
 
 const Container = styled.div`
   height: 100%;
