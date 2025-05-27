@@ -22,6 +22,10 @@ out/
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+bundle.js
+bundle.js.map
+bundle.*.js
+bundle.*.js.map
 
 # Electron-специфичное
 release/

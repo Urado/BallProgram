@@ -1,0 +1,41 @@
+import { DefaultTheme } from "styled-components";
+
+
+export const themes: Record<string, DefaultTheme> = {
+  dark: {
+    background: '#1e1e1e',
+    text: '#fff',
+    primary: '#0b84ff',
+    secondary: '#2c2c2c',
+    border: '#333',
+    highlight: '#444',
+    buttonBackground: '#555',
+    buttonText: '#fff',
+    buttonHover: '#666',
+    playButton: '#0b84ff',
+  },
+  light: {
+    background: '#f8f8f8',
+    text: '#000',
+    primary: '#007bff',
+    secondary: '#eaeaea',
+    border: '#ccc',
+    highlight: '#ddd',
+    buttonBackground: '#ccc',
+    buttonText: '#000',
+    buttonHover: '#bbb',
+    playButton: '#0b84ff',
+  },
+  solarized: {
+    background: '#002b36',
+    text: '#839496',
+    primary: '#268bd2',
+    secondary: '#073642',
+    border: '#586e75',
+    highlight: '#657b83',
+    buttonBackground: '#073642',
+    buttonText: '#eee8d5',
+    buttonHover: '#586e75',
+    playButton: '#268bd2',
+  },
+};

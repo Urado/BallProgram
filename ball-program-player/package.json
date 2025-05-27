@@ -1,0 +1,42 @@
+{
+  "name": "ball-program-player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "tsc && webpack && electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@electron/remote": "^2.1.2",
+    "@microsoft/signalr": "^8.0.7",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
+    "axios": "^1.9.0",
+    "electron": "^33.2.1",
+    "music-metadata": "^11.2.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "styled-components": "^6.1.17",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.7.2",
+    "uuid": "^11.1.0",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4",
+    "zustand": "^5.0.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.26.0",
+    "@types/axios": "^0.9.36",
+    "@types/styled-components": "^5.1.34",
+    "@typescript-eslint/eslint-plugin": "^8.32.0",
+    "@typescript-eslint/parser": "^8.32.0",
+    "eslint": "^9.26.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.1.0",
+    "typescript-eslint": "^8.32.0"
+  }
+}
