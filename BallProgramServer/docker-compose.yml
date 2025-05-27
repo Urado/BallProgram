@@ -1,0 +1,46 @@
+services:
+  ballprogramserver:
+    image: ${DOCKER_REGISTRY-}ballprogramserver
+    build:
+      context: .
+      dockerfile: BallProgramServer/Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - ball-program-network
+
+  postgres:
+    image: postgres:latest
+    container_name: my-postgres
+    environment:
+      POSTGRES_USER: ball-program-connect
+      POSTGRES_PASSWORD: ball1234
+      POSTGRES_DB: BP_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - ball-program-network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: my-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: pgadmin123
+    ports:
+      - "5050:80"
+    volumes:
+      - ./pgadmin_data:/var/lib/pgadmin
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    networks:
+      - ball-program-network
+
+networks:
+  ball-program-network:
+    driver: bridge
+
