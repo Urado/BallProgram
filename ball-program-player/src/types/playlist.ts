@@ -8,13 +8,13 @@ export interface BaseNode {
   isMuted?: boolean;
   volume?: number;
   orderIndex: number;
-  $type: "track" | "group";
+  $type: 'track' | 'group';
 }
 
 export interface TrackNode extends BaseNode {
   duration: number;
   src: string;
-  $type: "track";
+  $type: 'track';
 }
 
 export interface GroupNode extends BaseNode {

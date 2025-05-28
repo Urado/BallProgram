@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+
 import { Playlist } from '../../types/playlist';
 
 interface PlayerState {
@@ -20,9 +21,9 @@ export const usePlayerStore = create<PlayerState>((set) => ({
   isStreaming: false,
   trackProgress: 0,
   volume: 1,
-  setPlaylist: (playlist) => set({ playlist }),
-  setCurrentTrackId: (id) => set({ currentTrackId: id }),
-  setIsStreaming: (v) => set({ isStreaming: v }),
-  setTrackProgress: (v) => set({ trackProgress: v }),
-  setVolume: (v) => set({ volume: v })
+  setPlaylist: (playlist): void => set({ playlist }),
+  setCurrentTrackId: (id): void => set({ currentTrackId: id }),
+  setIsStreaming: (v): void => set({ isStreaming: v }),
+  setTrackProgress: (v): void => set({ trackProgress: v }),
+  setVolume: (v): void => set({ volume: v }),
 }));

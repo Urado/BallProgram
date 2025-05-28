@@ -1,8 +1,9 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { themes } from './theme';
-import { useSettingsStore } from './stores/settingsStore';
+
 import { AppLayout } from './components/AppLayout';
+import { useSettingsStore } from './stores/settingsStore';
+import { themes } from './theme';
 
 const App: React.FC = () => {
   const { themeName } = useSettingsStore();

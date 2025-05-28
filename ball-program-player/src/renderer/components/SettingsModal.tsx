@@ -17,7 +17,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   setTheme,
   availableThemes,
 }) => {
-  const [time, setTime] = useState(pauseAfterTime !== null ? pauseAfterTime : 0);
+  const [time, setTime] = useState(pauseAfterTime ?? 0);
   const [playForever, setPlayForever] = useState(pauseAfterTime === null);
 
   const handleSave = () => {
@@ -48,22 +48,14 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
 
       <div style={{ marginBottom: '10px' }}>
         <label>
-          <input
-            type="radio"
-            checked={playForever}
-            onChange={() => setPlayForever(true)}
-          />
+          <input type="radio" checked={playForever} onChange={() => setPlayForever(true)} />
           Play Forever
         </label>
       </div>
 
       <div style={{ marginBottom: '20px' }}>
         <label>
-          <input
-            type="radio"
-            checked={!playForever}
-            onChange={() => setPlayForever(false)}
-          />
+          <input type="radio" checked={!playForever} onChange={() => setPlayForever(false)} />
           Pause After
         </label>
         {!playForever && (
@@ -71,7 +63,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
             type="number"
             value={time}
             onChange={(e) => setTime(Number(e.target.value))}
-            style={{ marginLeft: '10px', width: '60px' }}
+            style={{
+              marginLeft: '10px',
+              width: '60px',
+            }}
           />
         )}
         <span> seconds</span>

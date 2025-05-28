@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { Playlist, PlaylistNode } from '../../../../types/playlist';
 import { StreamerButton } from '../../StreamerButton';
 import TrackItem from '../../TrackItem';
@@ -96,28 +97,30 @@ const PlaylistPage: React.FC<Props> = ({
   onSelectTrack,
   isStreaming,
   onStartStreaming,
-  onStopStreaming
+  onStopStreaming,
 }) => (
   <Container>
     <Header>
       <h2 style={{ margin: 0 }}>🎵 Плейлист {playlist?.title}</h2>
       <Button onClick={onSelectPlaylist}>📁 Выбрать</Button>
-      {playlist && <StreamerButton
-        isStreaming={isStreaming}
-        onStartStreaming={onStartStreaming}
-        onStopStreaming={onStopStreaming}
-        />}
+      {playlist && (
+        <StreamerButton
+          isStreaming={isStreaming}
+          onStartStreaming={onStartStreaming}
+          onStopStreaming={onStopStreaming}
+        />
+      )}
     </Header>
-    {playlist && <TrackList>
-      <List>
-        {playlist.tracks.map((node: PlaylistNode) =>
-          renderNode(node, currentTrackId, onSelectTrack)
-        )}
-      </List>
-    </TrackList>}
+    {playlist && (
+      <TrackList>
+        <List>
+          {playlist.tracks.map((node: PlaylistNode) =>
+            renderNode(node, currentTrackId, onSelectTrack)
+          )}
+        </List>
+      </TrackList>
+    )}
   </Container>
 );
 
 export default PlaylistPage;
-
-

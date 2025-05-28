@@ -1,20 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import { usePlayerStore } from '../stores/playerStore';
+
 import { TrackNode } from '../../types/playlist';
 import { useAudioPlayer } from '../hooks/useAudioPlayer';
+import { usePlayerStore } from '../stores/playerStore';
 
 interface ControlPanelProps {
   onSettingsClick: () => void;
-  playTrack: () => void,
-  pauseTrack: () => void,
-  seekTrack: (v: number) => void,
-  changeVolume: (v: number) => void,
-  resetTrack: () => void,
-  nextTrack: () => void,
-  previousTrack: () => void,
-  getCurrentTrack: () => TrackNode | null,
-  getDuration: () => number,
+  playTrack: () => void;
+  pauseTrack: () => void;
+  seekTrack: (v: number) => void;
+  changeVolume: (v: number) => void;
+  resetTrack: () => void;
+  nextTrack: () => void;
+  previousTrack: () => void;
+  getCurrentTrack: () => TrackNode | null;
+  getDuration: () => number;
 }
 
 const ControlPanel: React.FC<ControlPanelProps> = ({
@@ -28,9 +29,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   previousTrack,
   getDuration,
 }) => {
-  const {
-    trackProgress,
-  } = usePlayerStore();
+  const { trackProgress } = usePlayerStore();
 
   const { volume } = useAudioPlayer();
 

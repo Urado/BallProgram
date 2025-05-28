@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import React from "react";
+import React from 'react';
+import styled from 'styled-components';
 
 interface Props {
   isStreaming: boolean;
@@ -7,16 +7,14 @@ interface Props {
   onStopStreaming: () => void;
 }
 
-export const StreamerButton = ({ isStreaming, onStartStreaming, onStopStreaming}: Props) => {
+export const StreamerButton = ({ isStreaming, onStartStreaming, onStopStreaming }: Props) => {
   const toogleStreaming = () => {
-    if(isStreaming)
-      onStopStreaming();
-    else
-      onStartStreaming();
+    if (isStreaming) onStopStreaming();
+    else onStartStreaming();
   };
   return (
     <StyledButton onClick={toogleStreaming}>
-      {isStreaming ? "Стриминг..." : "Начать стриминг"}
+      {isStreaming ? 'Стриминг...' : 'Начать стриминг'}
     </StyledButton>
   );
 };

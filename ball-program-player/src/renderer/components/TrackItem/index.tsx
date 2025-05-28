@@ -15,8 +15,7 @@ const ListItem = styled.li<{ active: boolean }>`
   cursor: pointer;
   transition: background-color 0.2s;
   font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
-  background-color: ${({ active, theme }) =>
-    active ? theme.primary : theme.secondary};
+  background-color: ${({ active, theme }) => (active ? theme.primary : theme.secondary)};
   color: ${({ active, theme }) => (active ? theme.text : '#ccc')};
 `;
 

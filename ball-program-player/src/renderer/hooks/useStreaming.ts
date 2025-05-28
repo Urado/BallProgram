@@ -1,9 +1,17 @@
-import { useEffect, useCallback, useState } from 'react';
-import { playerHubService } from '../services/playerHub';
+import { useCallback, useEffect, useState } from 'react';
+
 import { Playlist } from '../../types/playlist';
 import { uploadPlaylist } from '../services/api';
+import { playerHubService } from '../services/playerHub';
 
-export function useStreaming(playlist: Playlist | null, currentTrackId: string | null, audioRef: React.RefObject<HTMLAudioElement | null>) {
+/**
+ *
+ */
+export function useStreaming(
+  playlist: Playlist | null,
+  currentTrackId: string | null,
+  audioRef: React.RefObject<HTMLAudioElement | null>
+) {
   const [isStreaming, setIsStreaming] = useState(false);
 
   const startStreaming = useCallback(async () => {

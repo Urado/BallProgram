@@ -1,7 +1,7 @@
-import { useRef, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
+
 import { usePlayerStore } from '../stores/playerStore';
 
-// Хук управления плеером одного трека
 export function useAudioPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { setTrackProgress, volume, setVolume } = usePlayerStore();
@@ -20,30 +20,35 @@ export function useAudioPlayer() {
       audioRef.current.currentTime = 0;
       setTrackProgress(0);
     }
-  }, []);
+  }, [setTrackProgress]);
 
-  const seekTrack = useCallback((time: number) => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = time;
-      setTrackProgress(time);
-    }
-  }, []);
+  const seekTrack = useCallback(
+    (time: number) => {
+      if (audioRef.current) {
+        audioRef.current.currentTime = time;
+        setTrackProgress(time);
+      }
+    },
+    [setTrackProgress]
+  );
 
-  
   const resetTrack = () => {
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
     }
   };
 
-  const changeVolume = useCallback((vol: number) => {
-    if (audioRef.current) {
-      audioRef.current.volume = vol;
-      setVolume(vol);
-    }
-  }, []);
+  const changeVolume = useCallback(
+    (vol: number) => {
+      if (audioRef.current) {
+        audioRef.current.volume = vol;
+        setVolume(vol);
+      }
+    },
+    [setVolume]
+  );
 
-  const getDuration = useCallback(() => audioRef.current?.duration || 0, [])
+  const getDuration = useCallback(() => audioRef.current?.duration ?? 0, []);
 
   useEffect(() => {
     const handleTimeUpdate = () => {
@@ -57,7 +62,7 @@ export function useAudioPlayer() {
     return () => {
       audio?.removeEventListener('timeupdate', handleTimeUpdate);
     };
-  }, []);
+  }, [setTrackProgress]);
 
   return {
     audioRef,

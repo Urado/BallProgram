@@ -10,6 +10,6 @@ interface SettingsState {
 export const useSettingsStore = create<SettingsState>((set) => ({
   pauseAfterTime: null,
   themeName: 'dark',
-  setPauseAfterTime: (v) => set({ pauseAfterTime: v }),
-  setThemeName: (themeName) => set({ themeName }),
+  setPauseAfterTime: (v): void => set({ pauseAfterTime: v }),
+  setThemeName: (themeName): void => set({ themeName }),
 }));
