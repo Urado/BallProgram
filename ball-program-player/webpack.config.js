@@ -7,9 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
   },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
-  },
+  resolve: {extensions: ['.ts', '.tsx', '.js']},
   module: {
     rules: [
       {
